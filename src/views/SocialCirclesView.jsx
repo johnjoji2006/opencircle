@@ -39,7 +39,7 @@ export default function SocialCirclesView() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 animate-fade-in">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-6 sm:space-y-8 animate-fade-in">
       
       {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-slate-200">
@@ -47,10 +47,10 @@ export default function SocialCirclesView() {
           <span className="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100/80 px-3 py-1 rounded-full">
             Real-Life Community Hangouts
           </span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
             Social Circles & Low-Pressure Meetups
           </h1>
-          <p className="text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
             The antidote to loneliness isn't another screen — it's casual, zero-pressure real-life company. Join a circle or host your own.
           </p>
         </div>
@@ -58,16 +58,16 @@ export default function SocialCirclesView() {
         {/* Host Circle Button */}
         <button
           onClick={() => setModalState({ type: 'hostCircle', data: null })}
-          className="px-5 py-3 rounded-2xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 self-start md:self-auto"
+          className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 self-start md:self-auto"
         >
-          <PlusCircle className="w-4 h-4" />
+          <PlusCircle className="w-4 h-4 flex-shrink-0" />
           <span>+ Host a Circle</span>
         </button>
       </div>
 
       {/* Filter Bar & Search */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-        {/* Category Filter Pills (Exact requirement) */}
+        {/* Category Filter Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
           {categories.map((cat) => {
             const isActive = activeCategory === cat;
@@ -75,7 +75,7 @@ export default function SocialCirclesView() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
+                className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                   isActive
                     ? 'bg-teal-700 text-white shadow-sm'
                     : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
@@ -101,9 +101,9 @@ export default function SocialCirclesView() {
       </div>
 
       {/* Low-pressure Golden Rules Callout */}
-      <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex items-center justify-between flex-wrap gap-2 text-xs text-amber-950">
+      <div className="p-3.5 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex items-center justify-between flex-wrap gap-2 text-xs text-amber-950">
         <span className="font-semibold flex items-center gap-2">
-          ☕ <strong>The OpenCircle Hangout Rule:</strong> You NEVER have to be loud, cheerful, or articulate. Sitting quietly with a cup of tea is 100% welcomed.
+          ☕ <strong>OpenCircle Hangout Rule:</strong> You NEVER have to be loud, cheerful, or articulate. Sitting quietly with a cup of tea is 100% welcomed.
         </span>
         <span className="text-amber-800 font-mono text-[11px]">
           Joining as: <strong>{anonymousMode ? userAlias : 'You'}</strong>
@@ -111,7 +111,7 @@ export default function SocialCirclesView() {
       </div>
 
       {/* Social Circles Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {filteredCircles.map((circle) => {
           const isUserJoined =
             circle.isJoined ||
@@ -122,7 +122,7 @@ export default function SocialCirclesView() {
           return (
             <div
               key={circle.id}
-              className={`p-6 rounded-3xl bg-white border transition-all duration-300 flex flex-col justify-between shadow-soft hover:shadow-soft-lg ${
+              className={`p-5 sm:p-6 rounded-3xl bg-white border transition-all duration-300 flex flex-col justify-between shadow-soft hover:shadow-soft-lg ${
                 isUserJoined ? 'border-teal-400 ring-2 ring-teal-500/10' : 'border-slate-200/80 hover:border-slate-300'
               }`}
             >
@@ -135,7 +135,7 @@ export default function SocialCirclesView() {
                   </span>
                   {isUserJoined && (
                     <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3" /> You're Going
+                      <CheckCircle2 className="w-3 h-3 flex-shrink-0" /> You're Going
                     </span>
                   )}
                 </div>
@@ -179,10 +179,10 @@ export default function SocialCirclesView() {
               </div>
 
               {/* Bottom Card Footer */}
-              <div className="pt-5 mt-5 border-t border-slate-100 space-y-3">
+              <div className="pt-4 sm:pt-5 mt-4 sm:mt-5 border-t border-slate-100 space-y-3">
                 <div className="flex items-center justify-between text-xs text-slate-500">
                   <span className="flex items-center gap-1.5">
-                    <Users className="w-3.5 h-3.5 text-teal-700" />
+                    <Users className="w-3.5 h-3.5 text-teal-700 flex-shrink-0" />
                     <strong>{circle.joinedCount}</strong> / {circle.spotsTotal} going
                   </span>
                   <span className={`text-[11px] font-semibold ${spotsLeft <= 3 ? 'text-rose-600' : 'text-slate-400'}`}>
@@ -193,15 +193,15 @@ export default function SocialCirclesView() {
                 {/* Recent attendee aliases pills */}
                 {circle.attendees && circle.attendees.length > 0 && (
                   <div className="flex items-center gap-1 overflow-hidden">
-                    <span className="text-[10px] text-slate-400">Pals:</span>
+                    <span className="text-[10px] text-slate-400 flex-shrink-0">Pals:</span>
                     <div className="flex items-center gap-1 truncate text-[10px] text-slate-500 font-mono">
                       {circle.attendees.slice(0, 3).map((att, i) => (
-                        <span key={i} className="bg-slate-100 px-1.5 py-0.5 rounded">
+                        <span key={i} className="bg-slate-100 px-1.5 py-0.5 rounded truncate max-w-[75px]">
                           {att}
                         </span>
                       ))}
                       {circle.attendees.length > 3 && (
-                        <span className="text-slate-400">+{circle.attendees.length - 3}</span>
+                        <span className="text-slate-400 flex-shrink-0">+{circle.attendees.length - 3}</span>
                       )}
                     </div>
                   </div>
@@ -220,7 +220,7 @@ export default function SocialCirclesView() {
                     <span>Leave Circle</span>
                   ) : (
                     <>
-                      <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                      <Sparkles className="w-3.5 h-3.5 text-amber-300 flex-shrink-0" />
                       <span>Join Circle (Free)</span>
                     </>
                   )}

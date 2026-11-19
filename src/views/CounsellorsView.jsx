@@ -37,7 +37,7 @@ export default function CounsellorsView() {
   const PAYOUT_PER_SESSION = 300; // ₹300 per verified session funded by ethical sponsors
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 animate-fade-in">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-6 sm:space-y-8 animate-fade-in">
       
       {/* Top Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-slate-200">
@@ -45,38 +45,38 @@ export default function CounsellorsView() {
           <span className="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100/80 px-3 py-1 rounded-full">
             ₹0 Mental Health Care
           </span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
             Verified Counsellors & Impact Portal
           </h1>
-          <p className="text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
             Every session is 100% free for students, strictly anonymous, and transparently rewarded via OpenCircle's ethical sponsor pool.
           </p>
         </div>
 
-        {/* Sub-tab Switcher (Exact requirement) */}
+        {/* Sub-tab Switcher */}
         <div className="flex p-1 bg-slate-200/80 rounded-2xl w-full sm:w-auto self-start md:self-auto">
           <button
             onClick={() => setCounsellorSubTab('book')}
-            className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 sm:gap-2 ${
               counsellorSubTab === 'book'
                 ? 'bg-white text-teal-900 shadow-sm'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Calendar className="w-4 h-4 text-teal-700" />
-            <span>Book a Free Session</span>
+            <Calendar className="w-4 h-4 text-teal-700 flex-shrink-0" />
+            <span>Book a Session</span>
           </button>
 
           <button
             onClick={() => setCounsellorSubTab('tracker')}
-            className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 sm:flex-none px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 sm:gap-2 ${
               counsellorSubTab === 'tracker'
                 ? 'bg-white text-teal-900 shadow-sm'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Coins className="w-4 h-4 text-amber-500" />
-            <span>Join & Payout Tracker</span>
+            <Coins className="w-4 h-4 text-amber-500 flex-shrink-0" />
+            <span>Join & Tracker</span>
           </button>
         </div>
       </div>
@@ -89,9 +89,9 @@ export default function CounsellorsView() {
           
           {/* Active Booking Banner / Notification */}
           {bookedSessions.length > 0 && (
-            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center font-bold">
+                <div className="w-9 h-9 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center font-bold flex-shrink-0">
                   {bookedSessions.length}
                 </div>
                 <div>
@@ -99,13 +99,13 @@ export default function CounsellorsView() {
                     You have {bookedSessions.length} active upcoming session(s)
                   </p>
                   <p className="text-xs text-slate-600">
-                    Next up: {bookedSessions[0].counsellorName} ({bookedSessions[0].slot})
+                    Next: {bookedSessions[0].counsellorName} ({bookedSessions[0].slot})
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setModalState({ type: 'mySessions', data: null })}
-                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-colors"
+                className="w-full sm:w-auto px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-colors text-center"
               >
                 View My Sessions Drawer →
               </button>
@@ -113,9 +113,9 @@ export default function CounsellorsView() {
           )}
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5 mr-1">
-              <Filter className="w-3.5 h-3.5" /> Filter by:
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+            <span className="text-xs font-bold text-slate-500 flex items-center gap-1 mr-1 flex-shrink-0">
+              <Filter className="w-3.5 h-3.5" /> Filter:
             </span>
             {[
               { id: 'all', label: 'All Specialties' },
@@ -127,7 +127,7 @@ export default function CounsellorsView() {
               <button
                 key={f.id}
                 onClick={() => setCategoryFilter(f.id)}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                   categoryFilter === f.id
                     ? 'bg-teal-700 text-white shadow-sm'
                     : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
@@ -139,24 +139,24 @@ export default function CounsellorsView() {
           </div>
 
           {/* Counsellor Directory Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {filteredCounsellors.map((counsellor) => (
               <div
                 key={counsellor.id}
-                className="p-6 rounded-3xl bg-white border border-slate-200/80 hover:border-teal-400 shadow-soft hover:shadow-soft-lg transition-all flex flex-col justify-between space-y-4"
+                className="p-5 sm:p-6 rounded-3xl bg-white border border-slate-200/80 hover:border-teal-400 shadow-soft hover:shadow-soft-lg transition-all flex flex-col justify-between space-y-4"
               >
                 <div>
                   
                   {/* Top info row */}
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-3 sm:gap-4">
                     <img
                       src={counsellor.avatar}
                       alt={counsellor.name}
-                      className="w-16 h-16 rounded-2xl object-cover border-2 border-teal-600/30 shadow-sm flex-shrink-0"
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border-2 border-teal-600/30 shadow-sm flex-shrink-0"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
-                        <h3 className="text-lg font-bold text-slate-900 truncate">
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900 truncate">
                           {counsellor.name}
                         </h3>
                         <span className="flex items-center gap-1 text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-lg border border-amber-200/60 flex-shrink-0">
@@ -165,7 +165,7 @@ export default function CounsellorsView() {
                         </span>
                       </div>
                       
-                      <p className="text-xs font-semibold text-teal-800 mt-0.5">
+                      <p className="text-xs font-semibold text-teal-800 mt-0.5 truncate">
                         {counsellor.title}
                       </p>
                       <p className="text-[11px] text-slate-500 truncate">
@@ -193,14 +193,14 @@ export default function CounsellorsView() {
 
                 {/* Footer details & Action */}
                 <div className="pt-4 border-t border-slate-100 space-y-3">
-                  <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center justify-between text-xs flex-wrap gap-1">
                     <div className="flex items-center gap-1.5 text-slate-500">
-                      <Clock className="w-3.5 h-3.5 text-teal-600" />
+                      <Clock className="w-3.5 h-3.5 text-teal-600 flex-shrink-0" />
                       <span>Next: <strong className="text-slate-800">{counsellor.nextAvailableSlot}</strong></span>
                     </div>
                     <div className="flex items-center gap-1 text-slate-600">
-                      <UserCheck className="w-3.5 h-3.5 text-emerald-600" />
-                      <span><strong className="text-slate-900">{counsellor.verifiedSessions}</strong> sessions verified</span>
+                      <UserCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                      <span><strong className="text-slate-900">{counsellor.verifiedSessions}</strong> verified</span>
                     </div>
                   </div>
 
@@ -225,55 +225,55 @@ export default function CounsellorsView() {
           TAB B: COUNSELLOR RECRUITMENT & PAYOUT TRACKER
          ======================================================== */}
       {counsellorSubTab === 'tracker' && (
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           
-          {/* Explanation Banner (Exact requirement) */}
+          {/* Explanation Banner */}
           <div className="p-6 sm:p-8 rounded-3xl bg-teal-900 text-white shadow-xl relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
               <div className="lg:col-span-8 space-y-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-300 bg-teal-800 px-3 py-1 rounded-full border border-teal-700">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-300 bg-teal-800 px-3 py-1 rounded-full border border-teal-700 inline-block">
                   OpenCircle Impact Contract
                 </span>
-                <h3 className="text-2xl font-extrabold tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight">
                   Transparent Session Tracking & Direct Payout Distribution
                 </h3>
-                <p className="text-sm text-teal-100 leading-relaxed">
+                <p className="text-xs sm:text-sm text-teal-100 leading-relaxed">
                   Start as a volunteer under our OpenCircle Impact Contract. Every session you take is transparently tracked — as sponsor funds grow, payouts are distributed directly based on your completed sessions.
                 </p>
-                <div className="flex flex-wrap gap-4 pt-1 text-xs text-teal-200">
+                <div className="flex flex-wrap gap-3 sm:gap-4 pt-1 text-xs text-teal-200">
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                    <span>Fixed rate: ₹{PAYOUT_PER_SESSION} / verified session</span>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span>Fixed rate: ₹{PAYOUT_PER_SESSION} / session</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                     <span>Weekly automated disbursement</span>
                   </div>
                 </div>
               </div>
 
               {/* Working Application Form Trigger */}
-              <div className="lg:col-span-4 flex justify-center lg:justify-end">
+              <div className="lg:col-span-4 flex justify-start lg:justify-end">
                 <button
                   onClick={() => setModalState({ type: 'applyCounsellor', data: null })}
-                  className="px-6 py-4 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold text-xs sm:text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
-                  <PlusCircle className="w-5 h-5" />
+                  <PlusCircle className="w-5 h-5 flex-shrink-0" />
                   <span>Apply as a Counsellor</span>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Impact & Payout Tracker Table (Exact requirement) */}
+          {/* Impact & Payout Tracker Container */}
           <div className="bg-white rounded-3xl border border-slate-200/80 shadow-soft overflow-hidden">
-            <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="p-5 sm:p-6 border-b border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
-                <h3 className="text-lg font-bold text-slate-900">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900">
                   Live Counsellor Payout & Session Ledger
                 </h3>
-                <p className="text-xs text-slate-500">
-                  Live demo ready for pitch judges: click "Log Completed Session +1" to observe instant ledger update!
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Live demo ready for pitch judges: click "Log Completed Session +1" to observe real-time ledger update!
                 </p>
               </div>
 
@@ -284,16 +284,63 @@ export default function CounsellorsView() {
               </div>
             </div>
 
-            {/* Table */}
-            <div className="overflow-x-auto">
+            {/* Mobile Cards View (< 768px) */}
+            <div className="block md:hidden divide-y divide-slate-100">
+              {counsellors.map((c) => {
+                const totalPayout = c.verifiedSessions * PAYOUT_PER_SESSION;
+
+                return (
+                  <div key={c.id} className="p-4 space-y-3 hover:bg-slate-50/60 transition-colors">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={c.avatar}
+                          alt={c.name}
+                          className="w-12 h-12 rounded-xl object-cover border border-slate-200 flex-shrink-0"
+                        />
+                        <div>
+                          <p className="font-bold text-slate-900 text-sm leading-tight">{c.name}</p>
+                          <p className="text-[11px] text-slate-500 mt-0.5">{c.specialty}</p>
+                          <span className="mt-1 inline-block px-2 py-0.5 rounded-md text-[10px] font-semibold bg-teal-50 text-teal-800 border border-teal-200/60">
+                            {c.tier || 'Impact Fellow'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
+                      <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                        <span className="text-[10px] text-slate-500 block uppercase font-bold">Verified Sessions</span>
+                        <span className="font-mono font-bold text-slate-900 text-base">{c.verifiedSessions}</span>
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-100">
+                        <span className="text-[10px] text-emerald-800 block uppercase font-bold">Sponsor Payout</span>
+                        <span className="font-mono font-bold text-emerald-700 text-base">₹{totalPayout.toLocaleString('en-IN')}</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => logCompletedSession(c.id)}
+                      className="w-full py-2.5 rounded-xl bg-teal-100 hover:bg-teal-700 hover:text-white text-teal-900 text-xs font-bold transition-all border border-teal-300/80 shadow-xs active:scale-95 flex items-center justify-center gap-1.5"
+                    >
+                      <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+                      <span>Log Completed Session +1 (Demo)</span>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Desktop / Tablet Table View (>= 768px) */}
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50/80 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                    <th className="py-3.5 px-4 sm:px-6">Counsellor & Specialty</th>
+                    <th className="py-3.5 px-6">Counsellor & Specialty</th>
                     <th className="py-3.5 px-4">Volunteer Tier</th>
                     <th className="py-3.5 px-4 text-center">Verified Sessions</th>
                     <th className="py-3.5 px-4">Estimated Sponsor Payout</th>
-                    <th className="py-3.5 px-4 sm:px-6 text-right">Live Demo Action</th>
+                    <th className="py-3.5 px-6 text-right">Live Demo Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-xs">
@@ -304,7 +351,7 @@ export default function CounsellorsView() {
                       <tr key={c.id} className="hover:bg-teal-50/30 transition-colors">
                         
                         {/* Counsellor */}
-                        <td className="py-4 px-4 sm:px-6">
+                        <td className="py-4 px-6">
                           <div className="flex items-center gap-3">
                             <img
                               src={c.avatar}
@@ -342,8 +389,8 @@ export default function CounsellorsView() {
                           </span>
                         </td>
 
-                        {/* Live Demo Button (Exact requirement) */}
-                        <td className="py-4 px-4 sm:px-6 text-right">
+                        {/* Live Demo Button */}
+                        <td className="py-4 px-6 text-right">
                           <button
                             onClick={() => logCompletedSession(c.id)}
                             className="px-3.5 py-2 rounded-xl bg-teal-100 hover:bg-teal-700 hover:text-white text-teal-900 text-xs font-bold transition-all border border-teal-300/80 shadow-xs active:scale-95 flex items-center gap-1.5 ml-auto"
@@ -361,9 +408,9 @@ export default function CounsellorsView() {
               </table>
             </div>
 
-            <div className="p-4 bg-slate-50/80 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+            <div className="p-4 bg-slate-50/80 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-slate-500 gap-2">
               <span className="flex items-center gap-1">
-                <ShieldCheck className="w-4 h-4 text-teal-700" />
+                <ShieldCheck className="w-4 h-4 text-teal-700 flex-shrink-0" />
                 Ledger entries audited for zero-student billing compliance.
               </span>
               <span>All payouts underwritten by verified OpenCircle CSR Sponsors.</span>

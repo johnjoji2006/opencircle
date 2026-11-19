@@ -46,16 +46,16 @@ export default function BreathingModal() {
         if (pattern === '478') {
           if (phase === 'Inhale') {
             setPhase('Hold');
-            playChime(523.25); // C5
+            playChime(523.25);
             return 7;
           } else if (phase === 'Hold') {
             setPhase('Exhale');
-            playChime(392.00); // G4
+            playChime(392.00);
             return 8;
           } else {
             setPhase('Inhale');
             setCyclesCompleted(c => c + 1);
-            playChime(440.00); // A4
+            playChime(440.00);
             return 4;
           }
         } else {
@@ -93,11 +93,11 @@ export default function BreathingModal() {
   let instruction = 'Breathe in slowly through your nose...';
 
   if (phase === 'Inhale') {
-    scaleClass = 'scale-125 transition-transform duration-[4000ms] ease-out';
+    scaleClass = 'scale-115 sm:scale-125 transition-transform duration-[4000ms] ease-out';
     phaseColor = 'bg-teal-100 text-teal-900 border-teal-300';
     instruction = 'Fill your lungs gently with calm...';
   } else if (phase === 'Hold') {
-    scaleClass = 'scale-125 transition-transform duration-1000';
+    scaleClass = 'scale-115 sm:scale-125 transition-transform duration-1000';
     phaseColor = 'bg-amber-100 text-amber-900 border-amber-300';
     instruction = 'Gently suspend your breath, stay still...';
   } else if (phase === 'Exhale') {
@@ -111,47 +111,47 @@ export default function BreathingModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-      <div className="bg-[#FAF9F6] w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-teal-100 relative overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
+      <div className="bg-[#FAF9F6] w-full max-w-md rounded-3xl p-5 sm:p-7 shadow-2xl border border-teal-100 relative overflow-hidden max-h-[92vh] overflow-y-auto">
         
         {/* Background gradient orb */}
         <div className="absolute -top-12 -right-12 w-48 h-48 bg-teal-200/40 rounded-full blur-2xl pointer-events-none"></div>
         <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-amber-200/40 rounded-full blur-2xl pointer-events-none"></div>
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-6 relative z-10">
+        <div className="flex items-center justify-between mb-4 sm:mb-6 relative z-10">
           <div>
             <div className="flex items-center gap-2">
               <span className="p-1.5 bg-teal-100 text-teal-800 rounded-lg">
                 <Sparkles className="w-4 h-4" />
               </span>
-              <h3 className="text-xl font-bold text-slate-900">Guided Nervous System Reset</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900">Guided Reset</h3>
             </div>
-            <p className="text-xs text-slate-500 mt-0.5">Slow breathing lowers cortisol and heart rate in 90 seconds</p>
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">Slow breathing resets cortisol and heart rate in 90s</p>
           </div>
           <button
             onClick={() => setModalState({ type: null, data: null })}
-            className="p-2 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100 transition-colors"
+            className="p-1.5 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Pattern Switcher */}
-        <div className="flex p-1 bg-slate-200/60 rounded-2xl mb-8 relative z-10">
+        <div className="flex p-1 bg-slate-200/60 rounded-2xl mb-4 sm:mb-6 relative z-10">
           <button
             onClick={() => {
               setPattern('478');
               setPhase('Inhale');
               setSecondsLeft(4);
             }}
-            className={`flex-1 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`flex-1 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold transition-all ${
               pattern === '478'
                 ? 'bg-white text-teal-900 shadow-sm'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            4-7-8 Deep Sleep / Panic
+            4-7-8 Deep Sleep
           </button>
           <button
             onClick={() => {
@@ -159,7 +159,7 @@ export default function BreathingModal() {
               setPhase('Inhale');
               setSecondsLeft(4);
             }}
-            className={`flex-1 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`flex-1 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold transition-all ${
               pattern === 'box'
                 ? 'bg-white text-teal-900 shadow-sm'
                 : 'text-slate-600 hover:text-slate-900'
@@ -170,43 +170,43 @@ export default function BreathingModal() {
         </div>
 
         {/* Breathing Circle Visualization */}
-        <div className="h-64 flex items-center justify-center relative my-4">
+        <div className="h-52 sm:h-60 flex items-center justify-center relative my-2 sm:my-4">
           {/* Animated pulse halo */}
-          <div className={`absolute w-56 h-56 rounded-full border border-teal-200/80 bg-teal-50/50 ${scaleClass}`}></div>
+          <div className={`absolute w-44 h-44 sm:w-56 sm:h-56 rounded-full border border-teal-200/80 bg-teal-50/50 ${scaleClass}`}></div>
           
           {/* Main animated orb */}
           <div
-            className={`w-44 h-44 rounded-full flex flex-col items-center justify-center shadow-lg border-2 z-10 ${scaleClass} ${phaseColor}`}
+            className={`w-36 h-36 sm:w-44 sm:h-44 rounded-full flex flex-col items-center justify-center shadow-lg border-2 z-10 ${scaleClass} ${phaseColor}`}
           >
-            <span className="text-xs font-bold uppercase tracking-wider opacity-80">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider opacity-80">
               {phase}
             </span>
-            <span className="text-4xl font-extrabold font-mono my-1">
+            <span className="text-3xl sm:text-4xl font-extrabold font-mono my-1">
               {secondsLeft}s
             </span>
-            <span className="text-[11px] font-medium opacity-70">
+            <span className="text-[10px] sm:text-[11px] font-medium opacity-70">
               Cycle #{cyclesCompleted + 1}
             </span>
           </div>
         </div>
 
         {/* Instruction Text */}
-        <p className="text-center text-sm font-semibold text-slate-700 min-h-[2.5rem] flex items-center justify-center mb-6 px-4">
+        <p className="text-center text-xs sm:text-sm font-semibold text-slate-700 min-h-[2.5rem] flex items-center justify-center mb-4 sm:mb-6 px-3">
           {instruction}
         </p>
 
         {/* Controls */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-200/80 relative z-10">
+        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-slate-200/80 relative z-10">
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-colors ${
+            className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold border transition-colors ${
               soundEnabled
                 ? 'bg-teal-50 text-teal-800 border-teal-200'
                 : 'bg-slate-100 text-slate-500 border-slate-200'
             }`}
           >
             {soundEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
-            <span>Chimes {soundEnabled ? 'ON' : 'OFF'}</span>
+            <span className="hidden xs:inline">Chimes</span> <span>{soundEnabled ? 'ON' : 'OFF'}</span>
           </button>
 
           <div className="flex items-center gap-2">
@@ -223,7 +223,7 @@ export default function BreathingModal() {
             </button>
             <button
               onClick={() => setIsRunning(!isRunning)}
-              className="flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold text-white bg-teal-700 hover:bg-teal-800 shadow-md transition-all"
+              className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 rounded-xl text-xs font-bold text-white bg-teal-700 hover:bg-teal-800 shadow-md transition-all"
             >
               {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
               <span>{isRunning ? 'Pause' : 'Resume'}</span>
